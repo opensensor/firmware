@@ -118,26 +118,26 @@ fresh() {
       echo_c 34 "Done.\n"
     fi
 
-    echo_c 34 "Cleaning source directory."
-    echo_c 35 "make distclean"
-    make distclean
+    #echo_c 34 "Cleaning source directory."
+    #echo_c 35 "make distclean"
+    #make distclean
     echo_c 34 "Done.\n"
   else
     echo_c 31 "Buildroot sources not found."
   fi
 
-  echo_c 34 "Downloading Buildroot sources to cache directory ..."
-  log_and_run "curl --output ${SRC_CACHE_DIR}/buildroot-${BR_VER}.tar.gz https://buildroot.org/downloads/buildroot-${BR_VER}.tar.gz"
-  echo_c 34 "Done.\n"
+  #echo_c 34 "Downloading Buildroot sources to cache directory ..."
+  #log_and_run "curl --output ${SRC_CACHE_DIR}/buildroot-${BR_VER}.tar.gz https://buildroot.org/downloads/buildroot-${BR_VER}.tar.gz"
+  #echo_c 34 "Done.\n"
 
-  echo_c 34 "Extracting a fresh copy of Buildroot from Buildroot sources ..."
-  log_and_run "tar xvf ${SRC_CACHE_DIR}/buildroot-${BR_VER}.tar.gz"
-  echo_c 34 "Done.\n"
+  #echo_c 34 "Extracting a fresh copy of Buildroot from Buildroot sources ..."
+  #log_and_run "tar xvf ${SRC_CACHE_DIR}/buildroot-${BR_VER}.tar.gz"
+  #echo_c 34 "Done.\n"
 
-  echo_c 34 "Copying cached source files back to Buildroot ..."
-  log_and_run "mkdir -p buildroot-${BR_VER}/dl/"
-  log_and_run "cp -rvf ${SRC_CACHE_DIR}/* buildroot-${BR_VER}/dl/"
-  echo_c 34 "Done.\n"
+  #echo_c 34 "Copying cached source files back to Buildroot ..."
+  #log_and_run "mkdir -p buildroot-${BR_VER}/dl/"
+  #log_and_run "cp -rvf ${SRC_CACHE_DIR}/* buildroot-${BR_VER}/dl/"
+  #echo_c 34 "Done.\n"
 
   # prevent to double download buildroot
   # make prepare
@@ -247,26 +247,26 @@ uni_build() {
 
 #######
 
-check_or_set_lock
+#check_or_set_lock
 
-build_list_of_projects
+#build_list_of_projects
 
-if [ -n "$1" ]; then
-  BOARD=$1
-else
-  select_project
-fi
+#if [ -n "$1" ]; then
+#  BOARD=$1
+#else
+#  select_project
+#fi
 
-[ -z "$BOARD" ] && echo_c 31 "Nothing selected." && drop_lock_and_exit
+#[ -z "$BOARD" ] && echo_c 31 "Nothing selected." && drop_lock_and_exit
 
 COMMAND=$2
 [ -z "$COMMAND" ] && COMMAND=all
 
-for i in "${FUNCS[@]}"; do
-  copy_function uni_build $i
-done
+#for i in "${FUNCS[@]}"; do
+#  copy_function uni_build $i
+#done
 
-echo_c 37 "Building OpenIPC for ${BOARD}"
+echo_c 37 "Building OpenIPC for ${BOARD} ${COMMAND}"
 uni_build $BOARD $COMMAND
 
 drop_lock_and_exit
